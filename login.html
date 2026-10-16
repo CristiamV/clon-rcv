@@ -1,0 +1,546 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <meta
+      name="csrf-token"
+      content="vrGsXrzQ9EYd9fdMvviPHVWdJl0iQCMN8ju0dlcI"
+    />
+
+    <title>La Venezolana De Seguros y Vida C.A.</title>
+    <!-- Favicon -->
+    <link
+      href="https://canal.lavenezolanadeseguros.com/img/resources/isotipo.png"
+      rel="icon"
+      type="image/png"
+    />
+    <!-- Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700"
+      rel="stylesheet"
+    />
+    <!-- Extra details for Live View on GitHub Pages -->
+
+    <!-- Icons -->
+    <link
+      href="https://canal.lavenezolanadeseguros.com/argon/vendor/nucleo/css/nucleo.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://canal.lavenezolanadeseguros.com/argon/vendor/@fortawesome/fontawesome-free/css/all.min.css"
+      rel="stylesheet"
+    />
+    <!-- Argon CSS -->
+    <link
+      type="text/css"
+      href="https://canal.lavenezolanadeseguros.com/argon/css/argon.css?v=1"
+      rel="stylesheet"
+    />
+
+    <link
+      type="text/css"
+      href="https://canal.lavenezolanadeseguros.com/css/daterangepicker.css"
+      rel="stylesheet"
+    />
+
+    <script src="https://rawgit.com/schmich/instascan-builds/master/instascan.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+  </head>
+
+  <style>
+    body {
+      background-image: url("https://canal.lavenezolanadeseguros.com/venezolana/BG.Sist.jpg");
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      min-height: 100vh;
+    }
+  </style>
+
+  <script src="https://canal.lavenezolanadeseguros.com/js/confirmButton.js"></script>
+
+  <body class="bg-default">
+    <div class="communication-background">
+      <div class="msg">
+        <img src="" class="icon-message" />
+        <div>
+          <span></span>
+          <button
+            id="confirm-erase-category"
+            type="button"
+            class="btn btn-danger"
+          >
+            Si, borrar
+          </button>
+        </div>
+        <img
+          src="https://canal.lavenezolanadeseguros.com/img/resources/close_icon_black.svg"
+          class="close-message"
+        />
+      </div>
+    </div>
+    <div id="picture-popup-edit" class="picture-popup">
+      <div>
+        <img
+          src="https://canal.lavenezolanadeseguros.com/img/resources/close_icon.svg"
+          class="close"
+        />
+        <form
+          action="https://canal.lavenezolanadeseguros.com/pictures/edit"
+          enctype="multipart/form-data"
+          method="post"
+        >
+          <input
+            type="hidden"
+            name="_token"
+            value="vrGsXrzQ9EYd9fdMvviPHVWdJl0iQCMN8ju0dlcI"
+          />
+          <input id="gallery_image_id" type="hidden" name="image_id" value="" />
+          <input id="gallery_category_id" type="hidden" name="" value="" />
+          <div class="picture-container">
+            <div>
+              <h4>Editar Foto</h4>
+              <input
+                type="file"
+                name="image"
+                class="custom-file-input"
+                id="imgEdit"
+                onclick="this.value = null"
+              />
+              <label id="labelFile" for="imgEdit"></label>
+              <img id="editImage" src="" class="picture" />
+            </div>
+            <div>
+              <div class="forun-group">
+                <input
+                  id="gallery_title"
+                  type="text"
+                  value=""
+                  name="image_title"
+                  class="form-control form-validation mb-2"
+                  placeholder="Título"
+                />
+                <input
+                  id="gallery_description"
+                  type="text"
+                  value=""
+                  name="image_description"
+                  class="form-control form-validation mb-2"
+                  placeholder="Descripción"
+                />
+              </div>
+              <div class="form-group form-right">
+                <span>Categoría</span>
+                <select
+                  class="form-select form-validation"
+                  id="imageCat"
+                  name="category_id"
+                ></select>
+              </div>
+              <div class="picture-buttons">
+                <button
+                  type="submit"
+                  name="delete"
+                  value="1"
+                  class="btn btn-danger"
+                >
+                  BORRAR
+                </button>
+                <button
+                  type="submit"
+                  name="edit"
+                  value="1"
+                  class="btn btn-primary"
+                  id="update-picture"
+                >
+                  ACTUALIZAR
+                </button>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+    <div id="picture-popup-new" class="picture-popup">
+      <div>
+        <img
+          src="https://canal.lavenezolanadeseguros.com/img/resources/close_icon.svg"
+          class="close"
+        />
+        <form
+          action="https://canal.lavenezolanadeseguros.com/pictures/save"
+          enctype="multipart/form-data"
+          method="post"
+        >
+          <input
+            type="hidden"
+            name="_token"
+            value="vrGsXrzQ9EYd9fdMvviPHVWdJl0iQCMN8ju0dlcI"
+          />
+          <div class="picture-container">
+            <div>
+              <h4>Nueva Foto</h4>
+              <input
+                type="file"
+                name="image"
+                class="custom-file-input new-pic-validation"
+                id="imgInp"
+                onclick="this.value = null"
+              />
+              <label id="labelFile" for="imgInp"></label>
+              <img
+                id="newImage"
+                src="https://canal.lavenezolanadeseguros.com/img/resources/new_pic_add.svg"
+                class="picture new-pic-validation"
+              />
+            </div>
+            <div>
+              <div class="forun-group">
+                <input
+                  type="text"
+                  name="image_title"
+                  class="form-control form-validation mb-2"
+                  id="imageTitle"
+                  placeholder="Título"
+                />
+                <input
+                  type="text"
+                  name="image_description"
+                  class="form-control form-validation mb-2"
+                  id="imageDescription"
+                  placeholder="Descripción"
+                />
+              </div>
+              <div class="form-group form-right">
+                <span>Categoría</span>
+                <select
+                  class="form-select new-pic-validation"
+                  id="newImageCat"
+                  name="category_id"
+                >
+                  <option selected>Seleccionar</option>
+                </select>
+              </div>
+              <div class="picture-buttons">
+                <button class="btn btn-primary" id="load-picture">
+                  SUBIR FOTO
+                </button>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+    <div id="contract-details" class="general-popup details">
+      <div class="info-container">
+        <h4></h4>
+        <h3></h3>
+        <div class="info-cuadrants">
+          <div class="cuadrant1">
+            <p id="contract-details-personas">
+              Daños a personas: <span></span>
+            </p>
+            <p id="contract-details-cosas">Daños a cosas: <span></span></p>
+            <p id="contract-details-crane">Servicio de grúa: <span></span></p>
+            <p id="contract-details-call">Call Center: <span></span></p>
+            <p id="contract-details-gps">GPS: <span></span></p>
+            <p id="contract-details-valid">Validez: <span>1 año</span></p>
+          </div>
+          <div class="cuadrant2">
+            <span>COBERTURA</span>
+            <div class="cuadrant2-wraper">
+              <div>
+                <ul>
+                  <li>Daños a terceros</li>
+                  <li>Daños a personas</li>
+                  <li>Exceso de límite</li>
+                  <li>Asistencia jurídica</li>
+                  <li>Muerte accidental</li>
+                  <li>Invalidez permanente</li>
+                  <li>Gastos funerarios</li>
+                  <li>Gastos médicos</li>
+                </ul>
+              </div>
+              <div class="cuadrant2-prices">
+                <span id="cob-1-pupup"></span>
+                <span id="cob-2-pupup"></span>
+                <span id="cob-3-pupup"></span>
+                <span id="cob-4-pupup"></span>
+                <span id="cob-5-pupup"></span>
+                <span id="cob-6-pupup"></span>
+                <span id="cob-7-pupup"></span>
+                <span id="cob-8-pupup"></span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <button
+          id="info-ok"
+          type="button"
+          class="btn btn-primary mt-5 button-full"
+        >
+          ENTENDIDO
+        </button>
+      </div>
+    </div>
+    <div class="main-content">
+      <nav
+        class="navbar navbar-top navbar-horizontal navbar-expand-md navbar-dark"
+      >
+        <div class="container px-4">
+          <!--<a class="navbar-brand" href="https://canal.lavenezolanadeseguros.com">
+            <img src="https://canal.lavenezolanadeseguros.com/venezolana/logoblanco.png" style="width: 200px; height: auto;"/>
+        </a>-->
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-toggle="collapse"
+            data-target="#navbar-collapse-main"
+            aria-controls="navbarSupportedContent"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbar-collapse-main">
+            <!-- Collapse header -->
+            <div class="navbar-collapse-header d-md-none">
+              <div class="row">
+                <div class="col-6 collapse-brand">
+                  <a href="https://canal.lavenezolanadeseguros.com">
+                    <img
+                      src="https://canal.lavenezolanadeseguros.com/img/resources/Imagen2.png"
+                      style="width: 220px; height: auto"
+                    />
+                  </a>
+                </div>
+                <div class="col-6 collapse-close">
+                  <button
+                    type="button"
+                    class="navbar-toggler"
+                    data-toggle="collapse"
+                    data-target="#navbar-collapse-main"
+                    aria-controls="sidenav-main"
+                    aria-expanded="false"
+                    aria-label="Toggle sidenav"
+                  >
+                    <span></span>
+                    <span></span>
+                  </button>
+                </div>
+              </div>
+            </div>
+            <!-- Navbar items -->
+            <ul class="navbar-nav ml-auto">
+              <!--<li class="nav-item">
+                    <a class="nav-link nav-link-icon" href="https://canal.lavenezolanadeseguros.com">
+                        <i class="fa fa-index"></i>
+                        <span class="nav-link-inner--text">Inicio</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link nav-link-icon" href="https://canal.lavenezolanadeseguros.com/register">
+                        <i class="ni ni-circle-08"></i>
+                        <span class="nav-link-inner--text">Registro</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link nav-link-icon" href="https://canal.lavenezolanadeseguros.com/login">
+                        <i class="ni ni-key-25"></i>
+                        <span class="nav-link-inner--text">Iniciar sesión</span>
+                    </a>
+                </li>-->
+            </ul>
+          </div>
+        </div>
+      </nav>
+      <div class="header py-7 py-lg-8">
+        <div class="container">
+          <div class="header-body text-center mb-7">
+            <div class="row justify-content-center mx-auto">
+              <a
+                style="width: auto; height: auto"
+                href="https://canal.lavenezolanadeseguros.com"
+              >
+                <div style="width: 300px; height: auto">
+                  <img
+                    src="https://canal.lavenezolanadeseguros.com/venezolana/logoblanco.png"
+                    style="width: 100%; height: auto"
+                  />
+                </div>
+              </a>
+              <!--<h1 class="text-white">Bienvenido</h1>-->
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="container mt--8 pb-5">
+        <div class="row justify-content-center">
+          <div class="col-lg-5 col-md-7">
+            <div class="card bg-secondary shadow border-0">
+              <div class="card-header bg-transparent">
+                <div class="text-muted text-login text-center mt-2 mb-3">
+                  INGRESA
+                </div>
+              </div>
+              <div class="card-body px-lg-5 py-lg-5">
+                <form
+                  role="form"
+                  method="POST"
+                  action="https://canal.lavenezolanadeseguros.com/login"
+                >
+                  <input
+                    type="hidden"
+                    name="_token"
+                    value="vrGsXrzQ9EYd9fdMvviPHVWdJl0iQCMN8ju0dlcI"
+                  />
+                  <div class="form-group mb-3">
+                    <div class="input-group input-group-alternative">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text"
+                          ><i class="ni ni-email-83"></i
+                        ></span>
+                      </div>
+                      <input
+                        class="form-control"
+                        placeholder="Email"
+                        type="email"
+                        name="email"
+                        value=""
+                        value="juan@admin.com"
+                        required
+                        autofocus
+                      />
+                    </div>
+                  </div>
+                  <div class="form-group mb-3">
+                    <div class="input-group input-group-alternative">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text"
+                          ><i class="ni ni-lock-circle-open"></i
+                        ></span>
+                      </div>
+                      <input
+                        class="form-control"
+                        name="password"
+                        placeholder="Password"
+                        type="password"
+                        required
+                      />
+                    </div>
+                  </div>
+                  <div
+                    class="custom-control custom-control-alternative custom-checkbox"
+                  >
+                    <input
+                      class="custom-control-input"
+                      name="remember"
+                      id="customCheckLogin"
+                      type="checkbox"
+                    />
+                    <label class="custom-control-label" for="customCheckLogin">
+                      <span class="text-muted">Recordar cuenta</span>
+                    </label>
+                  </div>
+                  <div class="text-center">
+                    <button type="submit" class="btn btn-primary my-4">
+                      Ingresar
+                    </button>
+                  </div>
+                </form>
+              </div>
+            </div>
+            <div class="row mt-3">
+              <div class="col-6">
+                <a
+                  href="https://canal.lavenezolanadeseguros.com/password/reset"
+                  class="text-light"
+                >
+                  <small>Olvidaste tu contrasena?</small>
+                </a>
+              </div>
+              <!-- <div class="col-6 text-right">
+                        <a href="https://canal.lavenezolanadeseguros.com/register" class="text-light">
+                            <small>Cuenta nueva</small>
+                        </a>
+                    </div>-->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="row align-items-center justify-content-xl-between">
+        <div class="col-xl-6">
+          <div class="copyright text-center text-xl-left text-muted">
+            &copy; 2026
+            <a href="#" class="font-weight-bold ml-1" target="_blank"
+              >Artgoritmo</a
+            >
+          </div>
+        </div>
+      </div>
+    </div>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/css/bootstrap-select.css"
+    />
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script src="https://canal.lavenezolanadeseguros.com/argon/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/js/bootstrap-select.min.js"></script>
+
+    <script src="https://canal.lavenezolanadeseguros.com/argon/js/argon.js?v=2.0.0"></script>
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.0.272/jspdf.debug.js"></script> -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script>
+      function markAsRead(id, element) {
+        fetch("/notifications/read/" + id, {
+          method: "POST",
+          headers: {
+            "X-CSRF-TOKEN": "vrGsXrzQ9EYd9fdMvviPHVWdJl0iQCMN8ju0dlcI",
+          },
+        }).then(() => {
+          if (element) {
+            element.remove();
+          }
+
+          // Actualizar contadores y badges
+          document.querySelectorAll(".notification-badge").forEach((el) => {
+            let count = parseInt(el.innerText) || 0;
+            let newCount = count > 0 ? count - 1 : 0;
+            el.innerText = newCount;
+            if (newCount === 0) {
+              el.style.display = "none";
+            }
+          });
+
+          document
+            .querySelectorAll(".notification-total-count")
+            .forEach((el) => {
+              let count = parseInt(el.innerText) || 0;
+              el.innerText = count > 0 ? count - 1 : 0;
+            });
+        });
+      }
+
+      function markAllAsRead() {
+        if (!confirm("¿Deseas marcar todas las notificaciones como leídas?"))
+          return;
+
+        fetch("/notifications/read-all", {
+          method: "POST",
+          headers: {
+            "X-CSRF-TOKEN": "vrGsXrzQ9EYd9fdMvviPHVWdJl0iQCMN8ju0dlcI",
+          },
+        }).then(() => {
+          location.reload();
+        });
+      }
+    </script>
+  </body>
+</html>

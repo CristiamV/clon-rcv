@@ -1,0 +1,2390 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <meta
+      name="csrf-token"
+      content="vrGsXrzQ9EYd9fdMvviPHVWdJl0iQCMN8ju0dlcI"
+    />
+
+    <title>La Venezolana De Seguros y Vida C.A.</title>
+    <!-- Favicon -->
+    <link
+      href="https://canal.lavenezolanadeseguros.com/img/resources/isotipo.png"
+      rel="icon"
+      type="image/png"
+    />
+    <!-- Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700"
+      rel="stylesheet"
+    />
+    <!-- Extra details for Live View on GitHub Pages -->
+
+    <!-- Icons -->
+    <link
+      href="https://canal.lavenezolanadeseguros.com/argon/vendor/nucleo/css/nucleo.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://canal.lavenezolanadeseguros.com/argon/vendor/@fortawesome/fontawesome-free/css/all.min.css"
+      rel="stylesheet"
+    />
+    <!-- Argon CSS -->
+    <link
+      type="text/css"
+      href="https://canal.lavenezolanadeseguros.com/argon/css/argon.css?v=1"
+      rel="stylesheet"
+    />
+
+    <link
+      type="text/css"
+      href="https://canal.lavenezolanadeseguros.com/css/daterangepicker.css"
+      rel="stylesheet"
+    />
+
+    <script src="https://rawgit.com/schmich/instascan-builds/master/instascan.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+  </head>
+
+  <style>
+    body {
+      background-image: url("https://canal.lavenezolanadeseguros.com/venezolana/BG.Sist.jpg");
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      min-height: 100vh;
+    }
+  </style>
+
+  <script src="https://canal.lavenezolanadeseguros.com/js/confirmButton.js"></script>
+
+  <body class="">
+    <div class="communication-background">
+      <div class="msg">
+        <img src="" class="icon-message" />
+        <div>
+          <span></span>
+          <button
+            id="confirm-erase-category"
+            type="button"
+            class="btn btn-danger"
+          >
+            Si, borrar
+          </button>
+        </div>
+        <img
+          src="https://canal.lavenezolanadeseguros.com/img/resources/close_icon_black.svg"
+          class="close-message"
+        />
+      </div>
+    </div>
+    <div id="picture-popup-edit" class="picture-popup">
+      <div>
+        <img
+          src="https://canal.lavenezolanadeseguros.com/img/resources/close_icon.svg"
+          class="close"
+        />
+        <form
+          action="https://canal.lavenezolanadeseguros.com/pictures/edit"
+          enctype="multipart/form-data"
+          method="post"
+        >
+          <input
+            type="hidden"
+            name="_token"
+            value="vrGsXrzQ9EYd9fdMvviPHVWdJl0iQCMN8ju0dlcI"
+          />
+          <input id="gallery_image_id" type="hidden" name="image_id" value="" />
+          <input id="gallery_category_id" type="hidden" name="" value="" />
+          <div class="picture-container">
+            <div>
+              <h4>Editar Foto</h4>
+              <input
+                type="file"
+                name="image"
+                class="custom-file-input"
+                id="imgEdit"
+                onclick="this.value = null"
+              />
+              <label id="labelFile" for="imgEdit"></label>
+              <img id="editImage" src="" class="picture" />
+            </div>
+            <div>
+              <div class="forun-group">
+                <input
+                  id="gallery_title"
+                  type="text"
+                  value=""
+                  name="image_title"
+                  class="form-control form-validation mb-2"
+                  placeholder="Título"
+                />
+                <input
+                  id="gallery_description"
+                  type="text"
+                  value=""
+                  name="image_description"
+                  class="form-control form-validation mb-2"
+                  placeholder="Descripción"
+                />
+              </div>
+              <div class="form-group form-right">
+                <span>Categoría</span>
+                <select
+                  class="form-select form-validation"
+                  id="imageCat"
+                  name="category_id"
+                ></select>
+              </div>
+              <div class="picture-buttons">
+                <button
+                  type="submit"
+                  name="delete"
+                  value="1"
+                  class="btn btn-danger"
+                >
+                  BORRAR
+                </button>
+                <button
+                  type="submit"
+                  name="edit"
+                  value="1"
+                  class="btn btn-primary"
+                  id="update-picture"
+                >
+                  ACTUALIZAR
+                </button>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+    <div id="picture-popup-new" class="picture-popup">
+      <div>
+        <img
+          src="https://canal.lavenezolanadeseguros.com/img/resources/close_icon.svg"
+          class="close"
+        />
+        <form
+          action="https://canal.lavenezolanadeseguros.com/pictures/save"
+          enctype="multipart/form-data"
+          method="post"
+        >
+          <input
+            type="hidden"
+            name="_token"
+            value="vrGsXrzQ9EYd9fdMvviPHVWdJl0iQCMN8ju0dlcI"
+          />
+          <div class="picture-container">
+            <div>
+              <h4>Nueva Foto</h4>
+              <input
+                type="file"
+                name="image"
+                class="custom-file-input new-pic-validation"
+                id="imgInp"
+                onclick="this.value = null"
+              />
+              <label id="labelFile" for="imgInp"></label>
+              <img
+                id="newImage"
+                src="https://canal.lavenezolanadeseguros.com/img/resources/new_pic_add.svg"
+                class="picture new-pic-validation"
+              />
+            </div>
+            <div>
+              <div class="forun-group">
+                <input
+                  type="text"
+                  name="image_title"
+                  class="form-control form-validation mb-2"
+                  id="imageTitle"
+                  placeholder="Título"
+                />
+                <input
+                  type="text"
+                  name="image_description"
+                  class="form-control form-validation mb-2"
+                  id="imageDescription"
+                  placeholder="Descripción"
+                />
+              </div>
+              <div class="form-group form-right">
+                <span>Categoría</span>
+                <select
+                  class="form-select new-pic-validation"
+                  id="newImageCat"
+                  name="category_id"
+                >
+                  <option selected>Seleccionar</option>
+                </select>
+              </div>
+              <div class="picture-buttons">
+                <button class="btn btn-primary" id="load-picture">
+                  SUBIR FOTO
+                </button>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+    <div id="contract-details" class="general-popup details">
+      <div class="info-container">
+        <h4></h4>
+        <h3></h3>
+        <div class="info-cuadrants">
+          <div class="cuadrant1">
+            <p id="contract-details-personas">
+              Daños a personas: <span></span>
+            </p>
+            <p id="contract-details-cosas">Daños a cosas: <span></span></p>
+            <p id="contract-details-crane">Servicio de grúa: <span></span></p>
+            <p id="contract-details-call">Call Center: <span></span></p>
+            <p id="contract-details-gps">GPS: <span></span></p>
+            <p id="contract-details-valid">Validez: <span>1 año</span></p>
+          </div>
+          <div class="cuadrant2">
+            <span>COBERTURA</span>
+            <div class="cuadrant2-wraper">
+              <div>
+                <ul>
+                  <li>Daños a terceros</li>
+                  <li>Daños a personas</li>
+                  <li>Exceso de límite</li>
+                  <li>Asistencia jurídica</li>
+                  <li>Muerte accidental</li>
+                  <li>Invalidez permanente</li>
+                  <li>Gastos funerarios</li>
+                  <li>Gastos médicos</li>
+                </ul>
+              </div>
+              <div class="cuadrant2-prices">
+                <span id="cob-1-pupup"></span>
+                <span id="cob-2-pupup"></span>
+                <span id="cob-3-pupup"></span>
+                <span id="cob-4-pupup"></span>
+                <span id="cob-5-pupup"></span>
+                <span id="cob-6-pupup"></span>
+                <span id="cob-7-pupup"></span>
+                <span id="cob-8-pupup"></span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <button
+          id="info-ok"
+          type="button"
+          class="btn btn-primary mt-5 button-full"
+        >
+          ENTENDIDO
+        </button>
+      </div>
+    </div>
+    <div class="main-content">
+      <nav
+        class="navbar navbar-top navbar-horizontal navbar-expand-md navbar-dark"
+      >
+        <div class="container px-4">
+          <!--<a class="navbar-brand" href="https://canal.lavenezolanadeseguros.com">
+            <img src="https://canal.lavenezolanadeseguros.com/venezolana/logoblanco.png" style="width: 200px; height: auto;"/>
+        </a>-->
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-toggle="collapse"
+            data-target="#navbar-collapse-main"
+            aria-controls="navbarSupportedContent"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbar-collapse-main">
+            <!-- Collapse header -->
+            <div class="navbar-collapse-header d-md-none">
+              <div class="row">
+                <div class="col-6 collapse-brand">
+                  <a href="https://canal.lavenezolanadeseguros.com">
+                    <img
+                      src="https://canal.lavenezolanadeseguros.com/img/resources/Imagen2.png"
+                      style="width: 220px; height: auto"
+                    />
+                  </a>
+                </div>
+                <div class="col-6 collapse-close">
+                  <button
+                    type="button"
+                    class="navbar-toggler"
+                    data-toggle="collapse"
+                    data-target="#navbar-collapse-main"
+                    aria-controls="sidenav-main"
+                    aria-expanded="false"
+                    aria-label="Toggle sidenav"
+                  >
+                    <span></span>
+                    <span></span>
+                  </button>
+                </div>
+              </div>
+            </div>
+            <!-- Navbar items -->
+            <ul class="navbar-nav ml-auto">
+              <!--<li class="nav-item">
+                    <a class="nav-link nav-link-icon" href="https://canal.lavenezolanadeseguros.com">
+                        <i class="fa fa-index"></i>
+                        <span class="nav-link-inner--text">Inicio</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link nav-link-icon" href="https://canal.lavenezolanadeseguros.com/register">
+                        <i class="ni ni-circle-08"></i>
+                        <span class="nav-link-inner--text">Registro</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link nav-link-icon" href="https://canal.lavenezolanadeseguros.com/login">
+                        <i class="ni ni-key-25"></i>
+                        <span class="nav-link-inner--text">Iniciar sesión</span>
+                    </a>
+                </li>-->
+            </ul>
+          </div>
+        </div>
+      </nav>
+
+      <!-- <div class="header py-7 py-lg-8">
+    <div class="container">
+
+    </div>
+</div>
+ -->
+
+      <div class="container-fluid pt-menu">
+        <div class="row">
+          <div class="col">
+            <div class="card bg-secondary shadow border-0">
+              <div class="card-body px-lg-5 py-lg-5">
+                <form
+                  role="form"
+                  name="contractCreate"
+                  method="post"
+                  action="https://canal.lavenezolanadeseguros.com/contracts/create"
+                >
+                  <input
+                    type="hidden"
+                    name="_token"
+                    value="vrGsXrzQ9EYd9fdMvviPHVWdJl0iQCMN8ju0dlcI"
+                  />
+                  <div
+                    class="switch-position d-flex justify-between flex-center"
+                  >
+                    <h1>Contrato #62505</h1>
+                  </div>
+
+                  <div class="text-center text-muted mb-4"></div>
+                  <div class="form-items-group">
+                    <div class="half form-group">
+                      <div
+                        class="input-group input-group-alternative mb-3 input-select-custom"
+                      >
+                        <div class="input-group-prepend">
+                          <span
+                            class="input-group-text grey"
+                            style="width: 40px"
+                            ><i class="fas fa-file-contract"></i
+                          ></span>
+                        </div>
+                        <select
+                          id="contract-type"
+                          class="form-select"
+                          name="contract_type"
+                          disabled
+                        >
+                          <option value="34">Particulares hasta 800kg</option>
+                        </select>
+                      </div>
+                    </div>
+                    <div class="quarter info view">
+                      <ul>
+                        <li id="costt">COSTO: € 33.00</li>
+                        <li id="infy">No incluye servicios adicionales</li>
+                      </ul>
+                    </div>
+                    <div class="quarter info view">
+                      <button
+                        id="contractBenefits"
+                        type="button"
+                        style="float: right"
+                        class="btn btn-primary button-full"
+                      >
+                        Ver Características
+                      </button>
+                    </div>
+                  </div>
+
+                  <p class="form-subtitle">DATOS DEL VEHÍCULO</p>
+                  <hr class="mt-0" />
+
+                  <div class="qr-wraper">
+                    <div class="qr-data-container">
+                      <div class="form-items-group mb-3">
+                        <div class="third form-group">
+                          <div
+                            class="input-group input-group-alternative input-select-custom"
+                          >
+                            <input
+                              id="vehicle-type"
+                              class="form-control"
+                              type="text"
+                              name="vehicle_type"
+                              value="Sedan"
+                              disabled
+                            />
+                          </div>
+                        </div>
+                        <div class="third form-group">
+                          <div class="input-group input-group-alternative">
+                            <input
+                              id="vehicle-color"
+                              class="form-control"
+                              placeholder="Color"
+                              type="text"
+                              name="vehicle_color"
+                              value="VERDE"
+                              disabled
+                            />
+                          </div>
+                        </div>
+                        <div class="third form-group">
+                          <div class="input-group input-group-alternative">
+                            <input
+                              id="vehicle-sits"
+                              class="form-control"
+                              placeholder="Puestos"
+                              type="text"
+                              name="vehicleSits"
+                              value="5"
+                              disabled
+                            />
+                          </div>
+                        </div>
+                      </div>
+                      <div class="form-items-group mb-3">
+                        <div class="third form-group">
+                          <div class="input-group input-group-alternative">
+                            <input
+                              id="vehicle-bodywork-serial"
+                              class="form-control"
+                              placeholder="Serial de carrocería"
+                              type="text"
+                              name="vehicle_bodywork_serial"
+                              value="9BD1351872050373"
+                              disabled
+                            />
+                          </div>
+                        </div>
+                        <div class="third form-group">
+                          <div class="input-group input-group-alternative">
+                            <input
+                              id="vehicle-motor-serial"
+                              class="form-control"
+                              placeholder="Clase"
+                              type="text"
+                              name="vehicleClass"
+                              value="Automovil"
+                              disabled
+                            />
+                          </div>
+                        </div>
+                        <div class="third form-group">
+                          <div class="input-group input-group-alternative">
+                            <input
+                              id="vehicle-motor-serial"
+                              class="form-control"
+                              placeholder="Serial Motor"
+                              type="text"
+                              name="vehicle_motor_serial"
+                              value="L30286202"
+                              disabled
+                            />
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <p class="form-subtitle">DATOS DEL CARNET DE CIRCULACIÓN</p>
+                  <hr class="mt-0 mb-3" />
+
+                  <div id="manual-data" class="form-items-group mb-3">
+                    <div class="quarter form-group">
+                      <div class="input-group input-group-alternative mb-3">
+                        <input
+                          id="vehiculo-placa"
+                          class="form-control"
+                          placeholder="Número de Placa"
+                          type="text"
+                          name="vehicle_number"
+                          value="RAP86X"
+                          disabled
+                        />
+                      </div>
+                    </div>
+                    <div class="quarter form-group">
+                      <div
+                        class="input-group input-group-alternative mb-3 input-select-custom"
+                      >
+                        <input
+                          id="vehiculo-marca"
+                          class="form-control"
+                          placeholder="Marca"
+                          type="text"
+                          name="vehicle_brand"
+                          value="FIAT"
+                          disabled
+                        />
+                      </div>
+                    </div>
+                    <div class="quarter form-group">
+                      <div
+                        class="input-group input-group-alternative mb-3 input-select-custom"
+                      >
+                        <input
+                          id="vehiculo-modelo"
+                          class="form-control"
+                          placeholder="Modelo"
+                          type="text"
+                          name="vehicle_model"
+                          value="IDEA ADVENTURE / IDEA"
+                          disabled
+                        />
+                      </div>
+                    </div>
+                    <div class="quarter form-group">
+                      <div
+                        class="input-group input-group-alternative mb-3 input-select-custom"
+                      >
+                        <input
+                          id="vehiculo-año"
+                          class="form-control"
+                          placeholder="Año"
+                          type="text"
+                          name="vehicle_year"
+                          value="2007"
+                          disabled
+                        />
+                      </div>
+                    </div>
+                  </div>
+
+                  <!--<p class="form-subtitle">RAZÓN DEL PORQUÉ SE SUSPENDIÓ EL CONTRATO</p>
+                            <hr class="mt-0">
+
+                            <div class="form-group mb-3">
+                              <textarea class="form-control" id="comentario"  name="comment" rows="4" placeholder="Escribe tu comentario aquí..."></textarea>
+                            </div>
+
+                            <input type="text" id="total" name="total" hidden />
+                            <p class="form-subtitle">EXTRAS</p><hr class="mt-0 mb-3">
+                            <div class="menu-extras mt-2">
+                                <div class="form-check">
+                                    <input type="checkbox" class="form-check-input" id="extras-grua" name="extras_grua"  disabled>
+                                    <label id="extras-grua-label" class="form-check-label" for="extras-grua">GRUA</label>
+                                </div>
+                                <div class="form-check">
+                                    <input type="checkbox" class="form-check-input" id="extras-gps" name="extras_gps"  disabled>
+                                    <label id="extras-gps-label" class="form-check-label" for="extras-gps">GPS</label>
+                                </div>
+                                <div class="form-check">
+                                    <input type="checkbox" class="form-check-input" id="extras-medical" name="extras_medical"  disabled>
+                                    <label id="extras-medical-label" class="form-check-label" for="extras-medical">S. MÉDICO</label>
+                                </div>
+                            </div>-->
+                  <div>
+                    <a
+                      href="/generate-contract/eyJpdiI6ImhWNmJQUXJnejNnOTFQVDRQRkpwYUE9PSIsInZhbHVlIjoiY2ZjRDFISEpqUjFzekZXNXBEYTBMQT09IiwibWFjIjoiZTRmZGUwMTU2ODI5ZGZkODEwMDgzOGZiZWI4NGQ3MjhhNmEzYTEwY2VmNmViYzQ3ZjMwMGQ0ZDliODY4NGFiMSIsInRhZyI6IiJ9"
+                      class="btn btn-primary mt-4 button-full"
+                      target="_blank"
+                      >DESCARGAR CONTRATO</a
+                    >
+
+                    <a
+                      href="/generate-carnet-client/eyJpdiI6IlNBZ1VjTm4rWnRQczcwazRId0daTWc9PSIsInZhbHVlIjoicDYxVzYxdjRhd1o4UkVXNkJKZWd5Zz09IiwibWFjIjoiYWY4Y2Q0Yzg1MWI1MzU2NjI4MmQ2ZTc0OGQ3ZjQwNmJkM2U4ODlkZjdkNzM5NTllODliYmU5YjgyMmRhZTk0MCIsInRhZyI6IiJ9"
+                      class="btn btn-primary mt-4 button-full"
+                      >DESCARGAR CARNET</a
+                    >
+
+                    <a
+                      href="https://canal.lavenezolanadeseguros.com/admin"
+                      class="btn btn-secondary mt-4 button-full"
+                      >VOLVER</a
+                    >
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="container-fluid">
+        <footer class="footer">
+          <div class="row align-items-center justify-content-xl-between">
+            <div class="col-xl-6">
+              <div class="copyright text-center text-xl-left text-muted">
+                &copy; 2026
+                <a href="#" class="font-weight-bold ml-1" target="_blank"
+                  >Artgoritmo</a
+                >
+              </div>
+            </div>
+          </div>
+        </footer>
+      </div>
+
+      <script>
+        var plans = {
+          1: {
+            nombre: "Basico Moto",
+            costo: 5,
+            cobertura: 500,
+            restriccion: null,
+            grua: null,
+            gps: null,
+            call_center: "8:00 am a 10:00 pm",
+            validez: 1,
+            cosas: 75,
+            personas: 75,
+            exceso: 75,
+            asistencia: 75,
+            muerte: 50,
+            invalidez: 50,
+            funerarios: 50,
+            medicos: 50,
+            vehicle_type: "Moto",
+            allow_crane: 0,
+          },
+          21: {
+            nombre: "Basico Moto (renovaci\u00f3n)",
+            costo: 5,
+            cobertura: 1000,
+            restriccion: null,
+            grua: null,
+            gps: null,
+            call_center: "8:00 am a 10:00 pm",
+            validez: 1,
+            cosas: 150,
+            personas: 150,
+            exceso: 150,
+            asistencia: 150,
+            muerte: 100,
+            invalidez: 100,
+            funerarios: 100,
+            medicos: 100,
+            vehicle_type: "Moto",
+            allow_crane: 0,
+          },
+          2: {
+            nombre: "Basico (renovaci\u00f3n)",
+            costo: 10,
+            cobertura: 1000,
+            restriccion: null,
+            grua: null,
+            gps: null,
+            call_center: "8:00 am a 10:00 pm",
+            validez: 1,
+            cosas: 150,
+            personas: 150,
+            exceso: 150,
+            asistencia: 150,
+            muerte: 100,
+            invalidez: 100,
+            funerarios: 100,
+            medicos: 100,
+            vehicle_type: "Autom\u00f3vil",
+            allow_crane: 0,
+          },
+          13: {
+            nombre: "Basico",
+            costo: 10,
+            cobertura: 1000,
+            restriccion: null,
+            grua: null,
+            gps: null,
+            call_center: "8:00 am a 10:00 pm",
+            validez: 1,
+            cosas: 150,
+            personas: 150,
+            exceso: 150,
+            asistencia: 150,
+            muerte: 100,
+            invalidez: 100,
+            funerarios: 100,
+            medicos: 100,
+            vehicle_type: "Autom\u00f3vil",
+            allow_crane: 0,
+          },
+          12: {
+            nombre: "Plan Renovacion",
+            costo: 10,
+            cobertura: 2000,
+            restriccion: "No aplica para moto",
+            grua: null,
+            gps: null,
+            call_center: "8:00 am a 10:00 pm",
+            validez: 1,
+            cosas: 300,
+            personas: 300,
+            exceso: 300,
+            asistencia: 300,
+            muerte: 200,
+            invalidez: 200,
+            funerarios: 200,
+            medicos: 200,
+            vehicle_type: "Autom\u00f3vil",
+            allow_crane: 0,
+          },
+          81: {
+            nombre: "Tracci\u00f3n Sangre",
+            costo: 12,
+            cobertura: null,
+            restriccion: null,
+            grua: null,
+            gps: null,
+            call_center: "7:00am a 8:00pm",
+            validez: 1,
+            cosas: 210,
+            personas: 375,
+            exceso: 0,
+            asistencia: null,
+            muerte: 0,
+            invalidez: null,
+            funerarios: 0,
+            medicos: 0,
+            vehicle_type: "",
+            allow_crane: 0,
+          },
+          33: {
+            nombre: "Motocicletas",
+            costo: 15,
+            cobertura: null,
+            restriccion: null,
+            grua: null,
+            gps: null,
+            call_center: "7:00am a 8:00pm",
+            validez: 1,
+            cosas: 2000,
+            personas: 2505,
+            exceso: 0,
+            asistencia: null,
+            muerte: 0,
+            invalidez: null,
+            funerarios: 0,
+            medicos: 0,
+            vehicle_type: "Moto",
+            allow_crane: 0,
+          },
+          29: {
+            nombre: "Rio de Janeiro",
+            costo: 15,
+            cobertura: 1100,
+            restriccion: null,
+            grua: null,
+            gps: null,
+            call_center: "7:00 am a 10:00 pm",
+            validez: 1,
+            cosas: 165,
+            personas: 165,
+            exceso: 165,
+            asistencia: 165,
+            muerte: 110,
+            invalidez: 110,
+            funerarios: 110,
+            medicos: 110,
+            vehicle_type: "Todos",
+            allow_crane: 0,
+          },
+          3: {
+            nombre: "Platinum",
+            costo: 20,
+            cobertura: 1500,
+            restriccion: null,
+            grua: null,
+            gps: null,
+            call_center: "8:00 am a 10:00 pm",
+            validez: 1,
+            cosas: 250,
+            personas: 250,
+            exceso: 250,
+            asistencia: 250,
+            muerte: 125,
+            invalidez: 125,
+            funerarios: 125,
+            medicos: 125,
+            vehicle_type: "Autos y Camiones",
+            allow_crane: 1,
+          },
+          55: {
+            nombre: "Black Friday",
+            costo: 20,
+            cobertura: 0,
+            restriccion: "Solo 1 servicio",
+            grua: "1 servicio de 35 km",
+            gps: null,
+            call_center: "7:00 am a 10:00pm",
+            validez: 1,
+            cosas: 0,
+            personas: 0,
+            exceso: 0,
+            asistencia: 0,
+            muerte: 0,
+            invalidez: null,
+            funerarios: 0,
+            medicos: 0,
+            vehicle_type: "Todos",
+            allow_crane: 1,
+          },
+          16: {
+            nombre: "Renovaci\u00f3n Platinium",
+            costo: 20,
+            cobertura: 2500,
+            restriccion: "no posee grua",
+            grua: null,
+            gps: null,
+            call_center: "8:00 am a 10:00 pm",
+            validez: 1,
+            cosas: 375,
+            personas: 375,
+            exceso: 375,
+            asistencia: 375,
+            muerte: 250,
+            invalidez: 250,
+            funerarios: 250,
+            medicos: 250,
+            vehicle_type: "Todos",
+            allow_crane: 0,
+          },
+          24: {
+            nombre: "Amatista G.",
+            costo: 20,
+            cobertura: 0,
+            restriccion: "A partir del a\u00f1o 2000",
+            grua: "2 Servicios de 25Km en la Gran Caracas",
+            gps: null,
+            call_center: "7:00 am a 10:00 pm",
+            validez: 1,
+            cosas: 0,
+            personas: 0,
+            exceso: 0,
+            asistencia: 0,
+            muerte: 0,
+            invalidez: 0,
+            funerarios: 0,
+            medicos: 0,
+            vehicle_type: "Autom\u00f3vil",
+            allow_crane: 1,
+          },
+          22: {
+            nombre: "Platinum (renovaci\u00f3n)",
+            costo: 20,
+            cobertura: 1500,
+            restriccion: null,
+            grua: null,
+            gps: null,
+            call_center: "8:00 am a 10:00 pm",
+            validez: 1,
+            cosas: 250,
+            personas: 250,
+            exceso: 250,
+            asistencia: 250,
+            muerte: 125,
+            invalidez: 125,
+            funerarios: 125,
+            medicos: 125,
+            vehicle_type: "Autos y Camiones",
+            allow_crane: 1,
+          },
+          45: {
+            nombre: "Moto carro hasta 750 kg",
+            costo: 21,
+            cobertura: null,
+            restriccion: null,
+            grua: null,
+            gps: null,
+            call_center: "7:00 am a 10:00 pm",
+            validez: 1,
+            cosas: 1874,
+            personas: 2505,
+            exceso: 0,
+            asistencia: null,
+            muerte: 0,
+            invalidez: null,
+            funerarios: 0,
+            medicos: 0,
+            vehicle_type: "Moto\/Automovil\/Camioneta",
+            allow_crane: 0,
+          },
+          23: {
+            nombre: "Amatista",
+            costo: 25,
+            cobertura: 1000,
+            restriccion: "A partir del a\u00f1o 2000",
+            grua: "2 servicios de 25 klm",
+            gps: null,
+            call_center: "8:00 am a 10:00 pm",
+            validez: 1,
+            cosas: 150,
+            personas: 150,
+            exceso: 150,
+            asistencia: 150,
+            muerte: 100,
+            invalidez: 100,
+            funerarios: 100,
+            medicos: 100,
+            vehicle_type: "Autom\u00f3vil",
+            allow_crane: 1,
+          },
+          25: {
+            nombre: "Diamante G.",
+            costo: 25,
+            cobertura: 0,
+            restriccion: "A partir del a\u00f1o 2000",
+            grua: "3 Servicios de 35Km en la Gran Caracas",
+            gps: null,
+            call_center: "7:00 am a 10:00 pm",
+            validez: 1,
+            cosas: 0,
+            personas: 0,
+            exceso: 0,
+            asistencia: 0,
+            muerte: 0,
+            invalidez: 0,
+            funerarios: 0,
+            medicos: 0,
+            vehicle_type: "Autom\u00f3vil",
+            allow_crane: 1,
+          },
+          15: {
+            nombre: "Esmeralda",
+            costo: 25,
+            cobertura: 0,
+            restriccion: "A partir del a\u00f1o 2000",
+            grua: "3 Servicios de 35Km en la Gran Caracas",
+            gps: null,
+            call_center: "7:00 am a 10:00 pm",
+            validez: 1,
+            cosas: 0,
+            personas: 0,
+            exceso: 0,
+            asistencia: 0,
+            muerte: 0,
+            invalidez: 0,
+            funerarios: 0,
+            medicos: 0,
+            vehicle_type: "Autom\u00f3vil",
+            allow_crane: 1,
+          },
+          10: {
+            nombre: "PROMO NAVIDAD CON GRUA",
+            costo: 30,
+            cobertura: 2500,
+            restriccion: "A partir del a\u00f1o 2000",
+            grua: "3 Servicios de 35Km en la Gran Caracas",
+            gps: "NO APLICA",
+            call_center: "8:00 am a 10:00 pm",
+            validez: 1,
+            cosas: 375,
+            personas: 375,
+            exceso: 375,
+            asistencia: 375,
+            muerte: 250,
+            invalidez: 250,
+            funerarios: 250,
+            medicos: 250,
+            vehicle_type: "Autom\u00f3vil",
+            allow_crane: 1,
+          },
+          26: {
+            nombre: "Uranium G.",
+            costo: 30,
+            cobertura: 0,
+            restriccion: "Hasta el a\u00f1o 2003",
+            grua: "3 Servicios de 25Km en la Gran Caracas",
+            gps: null,
+            call_center: "7:00 am a 10:00 pm",
+            validez: 1,
+            cosas: 0,
+            personas: 0,
+            exceso: 0,
+            asistencia: 0,
+            muerte: 0,
+            invalidez: 0,
+            funerarios: 0,
+            medicos: 0,
+            vehicle_type: "Autom\u00f3vil",
+            allow_crane: 1,
+          },
+          83: {
+            nombre: "Moto de agua y Bananas (Plan de Recreo) Cobertura 2000",
+            costo: 30,
+            cobertura: 2000,
+            restriccion: null,
+            grua: null,
+            gps: null,
+            call_center: null,
+            validez: 1,
+            cosas: 2000,
+            personas: 2000,
+            exceso: 0,
+            asistencia: 0,
+            muerte: 0,
+            invalidez: 0,
+            funerarios: 0,
+            medicos: 0,
+            vehicle_type: "Acu\u00e1tico",
+            allow_crane: 0,
+          },
+          80: {
+            nombre: "Otras m\u00e1quinas",
+            costo: 30,
+            cobertura: null,
+            restriccion: null,
+            grua: null,
+            gps: null,
+            call_center: "7:00am a 8:00pm",
+            validez: 1,
+            cosas: 2000,
+            personas: 2505,
+            exceso: 0,
+            asistencia: null,
+            muerte: 0,
+            invalidez: null,
+            funerarios: 0,
+            medicos: 0,
+            vehicle_type: "",
+            allow_crane: 0,
+          },
+          14: {
+            nombre: "RIO CARGA",
+            costo: 30,
+            cobertura: 1500,
+            restriccion: "CONDICIONES",
+            grua: null,
+            gps: null,
+            call_center: "7:00 am a 10:00 pm",
+            validez: 1,
+            cosas: 225,
+            personas: 225,
+            exceso: 225,
+            asistencia: 225,
+            muerte: 150,
+            invalidez: 150,
+            funerarios: 150,
+            medicos: 150,
+            vehicle_type: "Autos y Camiones",
+            allow_crane: 0,
+          },
+          34: {
+            nombre: "Particulares hasta 800kg",
+            costo: 33,
+            cobertura: null,
+            restriccion: null,
+            grua: null,
+            gps: null,
+            call_center: "7:00am a 8:00pm",
+            validez: 1,
+            cosas: 2000,
+            personas: 2505,
+            exceso: 0,
+            asistencia: null,
+            muerte: 0,
+            invalidez: null,
+            funerarios: 0,
+            medicos: 0,
+            vehicle_type: "Moto\/Automovil\/Camioneta",
+            allow_crane: 0,
+          },
+          84: {
+            nombre: "Moto de agua y Bananas (Plan de Recreo) Cobertura 3000",
+            costo: 35,
+            cobertura: 3000,
+            restriccion: null,
+            grua: null,
+            gps: null,
+            call_center: null,
+            validez: 1,
+            cosas: 3000,
+            personas: 3000,
+            exceso: 0,
+            asistencia: 0,
+            muerte: 0,
+            invalidez: 0,
+            funerarios: 0,
+            medicos: 0,
+            vehicle_type: "Acu\u00e1tico",
+            allow_crane: 0,
+          },
+          4: {
+            nombre: "Diamante",
+            costo: 35,
+            cobertura: 2500,
+            restriccion: "A partir del a\u00f1o 2000",
+            grua: "3 Servicios de 35Km en la Gran Caracas",
+            gps: null,
+            call_center: "8:00 am a 10:00 pm",
+            validez: 1,
+            cosas: 375,
+            personas: 375,
+            exceso: 375,
+            asistencia: 375,
+            muerte: 250,
+            invalidez: 250,
+            funerarios: 250,
+            medicos: 250,
+            vehicle_type: "Autom\u00f3vil",
+            allow_crane: 1,
+          },
+          40: {
+            nombre: "Casa movil traccion propia",
+            costo: 39,
+            cobertura: null,
+            restriccion: null,
+            grua: null,
+            gps: null,
+            call_center: "7:00 am a 10:00 pm",
+            validez: 1,
+            cosas: 2000,
+            personas: 2505,
+            exceso: 0,
+            asistencia: null,
+            muerte: 0,
+            invalidez: null,
+            funerarios: 0,
+            medicos: 0,
+            vehicle_type: "Cargas",
+            allow_crane: 0,
+          },
+          39: {
+            nombre: "Particulares mas de 800kg",
+            costo: 39,
+            cobertura: null,
+            restriccion: null,
+            grua: null,
+            gps: null,
+            call_center: "7:00 am a 10:00 pm",
+            validez: 1,
+            cosas: 2000,
+            personas: 2505,
+            exceso: 0,
+            asistencia: null,
+            muerte: 0,
+            invalidez: null,
+            funerarios: 0,
+            medicos: 0,
+            vehicle_type: "Moto\/Automovil\/Camioneta",
+            allow_crane: 0,
+          },
+          89: {
+            nombre:
+              "Plan de Botes\/Pe\u00f1eros\/Canoas\/Chalanas Cobertura 2500",
+            costo: 40,
+            cobertura: 2500,
+            restriccion: null,
+            grua: null,
+            gps: null,
+            call_center: null,
+            validez: 1,
+            cosas: 2500,
+            personas: 2500,
+            exceso: 0,
+            asistencia: 0,
+            muerte: 0,
+            invalidez: 0,
+            funerarios: 0,
+            medicos: 0,
+            vehicle_type: "Acu\u00e1tico",
+            allow_crane: 0,
+          },
+          30: {
+            nombre: "Diamante",
+            costo: 40,
+            cobertura: 0,
+            restriccion: null,
+            grua: "3 Servicios de 35Km",
+            gps: null,
+            call_center: "7:00 am a 10:00pm",
+            validez: 1,
+            cosas: 0,
+            personas: 0,
+            exceso: 0,
+            asistencia: 0,
+            muerte: 0,
+            invalidez: 0,
+            funerarios: 0,
+            medicos: 0,
+            vehicle_type: "Autom\u00f3vil",
+            allow_crane: 1,
+          },
+          5: {
+            nombre: "Uranium",
+            costo: 40,
+            cobertura: 2000,
+            restriccion: "Hasta el a\u00f1o 2000",
+            grua: "3 Servicios de 25Km en la Gran Caracas",
+            gps: null,
+            call_center: "8:00 am a 10:00 pm",
+            validez: 1,
+            cosas: 300,
+            personas: 300,
+            exceso: 300,
+            asistencia: 300,
+            muerte: 200,
+            invalidez: 200,
+            funerarios: 200,
+            medicos: 200,
+            vehicle_type: "Autom\u00f3vil",
+            allow_crane: 1,
+          },
+          27: {
+            nombre: "Titanium G.",
+            costo: 40,
+            cobertura: 0,
+            restriccion: "A partir del a\u00f1o 2000",
+            grua: "3 Servicios de 25Km en la Gran Caracas",
+            gps: null,
+            call_center: "7:00 am a 10:00 pm",
+            validez: 1,
+            cosas: 0,
+            personas: 0,
+            exceso: 0,
+            asistencia: 0,
+            muerte: 0,
+            invalidez: 0,
+            funerarios: 0,
+            medicos: 0,
+            vehicle_type: "Autos",
+            allow_crane: 1,
+          },
+          19: {
+            nombre: "PLAN AUTOBUSES Y CAMIONES",
+            costo: 40,
+            cobertura: 2500,
+            restriccion: null,
+            grua: null,
+            gps: null,
+            call_center: "8:00 am a 10:00 pm",
+            validez: 1,
+            cosas: 375,
+            personas: 375,
+            exceso: 375,
+            asistencia: 375,
+            muerte: 250,
+            invalidez: 250,
+            funerarios: 250,
+            medicos: 250,
+            vehicle_type: "Todos",
+            allow_crane: 0,
+          },
+          17: {
+            nombre: "Plan Etherium",
+            costo: 40,
+            cobertura: 5000,
+            restriccion: "Transporte Publico",
+            grua: null,
+            gps: null,
+            call_center: "8:00 am a 10:00 pm",
+            validez: 1,
+            cosas: 750,
+            personas: 750,
+            exceso: 750,
+            asistencia: 750,
+            muerte: 500,
+            invalidez: 500,
+            funerarios: 500,
+            medicos: 500,
+            vehicle_type: "Autos",
+            allow_crane: 0,
+          },
+          35: {
+            nombre: "Carga",
+            costo: 45,
+            cobertura: null,
+            restriccion: null,
+            grua: null,
+            gps: null,
+            call_center: "7:00am a 8:00pm",
+            validez: 1,
+            cosas: 1877,
+            personas: 2505,
+            exceso: 0,
+            asistencia: null,
+            muerte: 0,
+            invalidez: null,
+            funerarios: 0,
+            medicos: 0,
+            vehicle_type: "Camiones\/Autobus",
+            allow_crane: 0,
+          },
+          41: {
+            nombre: "Auto Escuela",
+            costo: 45,
+            cobertura: null,
+            restriccion: null,
+            grua: null,
+            gps: null,
+            call_center: "7:00 am a 10:00 pm",
+            validez: 1,
+            cosas: 2252,
+            personas: 3315,
+            exceso: 0,
+            asistencia: null,
+            muerte: 0,
+            invalidez: null,
+            funerarios: 0,
+            medicos: 0,
+            vehicle_type: "Moto\/Automovil\/Camioneta",
+            allow_crane: 0,
+          },
+          79: {
+            nombre: "Minibus Privado - Uso Particular",
+            costo: 45,
+            cobertura: null,
+            restriccion: null,
+            grua: null,
+            gps: null,
+            call_center: "7:00am a 8:00pm",
+            validez: 1,
+            cosas: 1502,
+            personas: 2817,
+            exceso: 0,
+            asistencia: null,
+            muerte: 0,
+            invalidez: null,
+            funerarios: 0,
+            medicos: 0,
+            vehicle_type: "Pick-up\/Vans",
+            allow_crane: 0,
+          },
+          85: {
+            nombre: "Lanchas y\/o Yates (Plan de Recreo) Cobertura 5000",
+            costo: 45,
+            cobertura: 5000,
+            restriccion: null,
+            grua: null,
+            gps: null,
+            call_center: null,
+            validez: 1,
+            cosas: 5000,
+            personas: 5000,
+            exceso: 0,
+            asistencia: 0,
+            muerte: 0,
+            invalidez: 0,
+            funerarios: 0,
+            medicos: 0,
+            vehicle_type: "Acu\u00e1tico",
+            allow_crane: 0,
+          },
+          49: {
+            nombre: "Chutos hasta 2 tm",
+            costo: 45,
+            cobertura: null,
+            restriccion: null,
+            grua: null,
+            gps: null,
+            call_center: "7:00 am a 10:00 pm",
+            validez: 1,
+            cosas: 1877,
+            personas: 2505,
+            exceso: 0,
+            asistencia: null,
+            muerte: 0,
+            invalidez: null,
+            funerarios: 0,
+            medicos: 0,
+            vehicle_type: "Cargas",
+            allow_crane: 0,
+          },
+          6: {
+            nombre: "Titanium",
+            costo: 50,
+            cobertura: 2000,
+            restriccion: "A partir del a\u00f1o 2000",
+            grua: "3 Servicios de 35Km en la Gran Caracas (Pick up \/ Panel)",
+            gps: null,
+            call_center: "8:00 am a 10:00 pm",
+            validez: 1,
+            cosas: 300,
+            personas: 300,
+            exceso: 300,
+            asistencia: 300,
+            muerte: 200,
+            invalidez: 200,
+            funerarios: 200,
+            medicos: 200,
+            vehicle_type: "Todos",
+            allow_crane: 1,
+          },
+          60: {
+            nombre: "Motocicleta con Placa Extrajera",
+            costo: 55,
+            cobertura: null,
+            restriccion: null,
+            grua: null,
+            gps: null,
+            call_center: "7:00am a 8:00pm",
+            validez: 1,
+            cosas: 10000,
+            personas: 12523,
+            exceso: 0,
+            asistencia: null,
+            muerte: 0,
+            invalidez: null,
+            funerarios: 0,
+            medicos: 0,
+            vehicle_type: "Camiones\/Autobus",
+            allow_crane: 0,
+          },
+          31: {
+            nombre: "Platinium",
+            costo: 60,
+            cobertura: null,
+            restriccion: null,
+            grua: "3 Servicios de 50Km en la Gran Caracas",
+            gps: null,
+            call_center: "7:00 am a 10:00 pm",
+            validez: 1,
+            cosas: 0,
+            personas: 0,
+            exceso: 0,
+            asistencia: null,
+            muerte: 0,
+            invalidez: null,
+            funerarios: 0,
+            medicos: 0,
+            vehicle_type: "Moto\/Automovil\/Camioneta",
+            allow_crane: 1,
+          },
+          28: {
+            nombre: "Full diamante G.",
+            costo: 60,
+            cobertura: 0,
+            restriccion: "A partir del a\u00f1o 2000",
+            grua: "7 Servicios de 40Km en la Gran Caracas",
+            gps: null,
+            call_center: "7:00 am a 10:00 pm",
+            validez: 1,
+            cosas: 0,
+            personas: 0,
+            exceso: 0,
+            asistencia: 0,
+            muerte: 0,
+            invalidez: 0,
+            funerarios: 0,
+            medicos: 0,
+            vehicle_type: "Autom\u00f3vil",
+            allow_crane: 1,
+          },
+          78: {
+            nombre: "Autob\u00fas Privado - Uso Particular",
+            costo: 68,
+            cobertura: null,
+            restriccion: null,
+            grua: null,
+            gps: null,
+            call_center: "7:00am a 8:00pm",
+            validez: 1,
+            cosas: 1502,
+            personas: 2817,
+            exceso: 0,
+            asistencia: null,
+            muerte: 0,
+            invalidez: null,
+            funerarios: 0,
+            medicos: 0,
+            vehicle_type: "Camiones\/Autobus",
+            allow_crane: 0,
+          },
+          18: {
+            nombre: "FULL DIAMANTE",
+            costo: 70,
+            cobertura: 3000,
+            restriccion: "A partir del a\u00f1o 2000",
+            grua: "7 Servicios de 40Km en la Gran Caracas (Auto \/ Camioneta)",
+            gps: null,
+            call_center: "8:00 am a 10:00 pm",
+            validez: 1,
+            cosas: 450,
+            personas: 450,
+            exceso: 450,
+            asistencia: 450,
+            muerte: 300,
+            invalidez: 300,
+            funerarios: 300,
+            medicos: 300,
+            vehicle_type: "Autom\u00f3vil",
+            allow_crane: 1,
+          },
+          82: {
+            nombre: "Ambulancia",
+            costo: 72,
+            cobertura: null,
+            restriccion: null,
+            grua: null,
+            gps: null,
+            call_center: "7:00am a 8:00pm",
+            validez: 1,
+            cosas: 1877,
+            personas: 2505,
+            exceso: 0,
+            asistencia: null,
+            muerte: 0,
+            invalidez: null,
+            funerarios: 0,
+            medicos: 0,
+            vehicle_type: "Camiones\/Autobus",
+            allow_crane: 0,
+          },
+          50: {
+            nombre: "Rusticos hasta 15 pasajeros",
+            costo: 75,
+            cobertura: null,
+            restriccion: null,
+            grua: null,
+            gps: null,
+            call_center: "7:00 am a 10:00 pm",
+            validez: 1,
+            cosas: 2500,
+            personas: 2500,
+            exceso: 0,
+            asistencia: null,
+            muerte: 0,
+            invalidez: null,
+            funerarios: 0,
+            medicos: 0,
+            vehicle_type: "Camiones\/Autobus",
+            allow_crane: 0,
+          },
+          86: {
+            nombre: "Lanchas y\/o Yates (Plan de Recreo) Cobertura 10000",
+            costo: 75,
+            cobertura: 10000,
+            restriccion: null,
+            grua: null,
+            gps: null,
+            call_center: null,
+            validez: 1,
+            cosas: 10000,
+            personas: 10000,
+            exceso: 0,
+            asistencia: 0,
+            muerte: 0,
+            invalidez: 0,
+            funerarios: 0,
+            medicos: 0,
+            vehicle_type: "Acu\u00e1tico",
+            allow_crane: 0,
+          },
+          53: {
+            nombre: "Minibuses suburbanos",
+            costo: 75,
+            cobertura: null,
+            restriccion: null,
+            grua: null,
+            gps: null,
+            call_center: "7:00 am a 10:00 pm",
+            validez: 1,
+            cosas: 1502,
+            personas: 2817,
+            exceso: 0,
+            asistencia: null,
+            muerte: 0,
+            invalidez: null,
+            funerarios: 0,
+            medicos: 0,
+            vehicle_type: "Camiones\/Autobus",
+            allow_crane: 0,
+          },
+          38: {
+            nombre: "Minibus",
+            costo: 75,
+            cobertura: null,
+            restriccion: null,
+            grua: null,
+            gps: null,
+            call_center: "7:00am a 8:00pm",
+            validez: 1,
+            cosas: 1502,
+            personas: 2817,
+            exceso: 0,
+            asistencia: null,
+            muerte: 0,
+            invalidez: null,
+            funerarios: 0,
+            medicos: 0,
+            vehicle_type: "Pick-up\/Vans",
+            allow_crane: 0,
+          },
+          90: {
+            nombre:
+              "Plan de Botes\/Pe\u00f1eros\/Canoas\/Chalanas Cobertura 7500",
+            costo: 75,
+            cobertura: 7500,
+            restriccion: null,
+            grua: null,
+            gps: null,
+            call_center: null,
+            validez: 1,
+            cosas: 7500,
+            personas: 7500,
+            exceso: 0,
+            asistencia: 0,
+            muerte: 0,
+            invalidez: 0,
+            funerarios: 0,
+            medicos: 0,
+            vehicle_type: "Acu\u00e1tico",
+            allow_crane: 0,
+          },
+          32: {
+            nombre: "Uranium",
+            costo: 80,
+            cobertura: 0,
+            restriccion: "NO CAMIONES NI AUTOBUS",
+            grua: "3 Servicios de 35Km en la Gran Caracas",
+            gps: null,
+            call_center: "7:00 am a 10:00 pm",
+            validez: 1,
+            cosas: 0,
+            personas: 0,
+            exceso: 0,
+            asistencia: 0,
+            muerte: 0,
+            invalidez: 0,
+            funerarios: 0,
+            medicos: 0,
+            vehicle_type: "Pick-up\/Vans",
+            allow_crane: 1,
+          },
+          20: {
+            nombre: "Plan Nacional",
+            costo: 80,
+            cobertura: 3000,
+            restriccion: "A partir del a\u00f1o 2000",
+            grua: "3 Servicios de 60 Km en la Gran Caracas",
+            gps: null,
+            call_center: "7:00 am a 10:00 pm",
+            validez: 1,
+            cosas: 450,
+            personas: 450,
+            exceso: 450,
+            asistencia: 450,
+            muerte: 300,
+            invalidez: 300,
+            funerarios: 300,
+            medicos: 300,
+            vehicle_type: "Autom\u00f3vil",
+            allow_crane: 1,
+          },
+          46: {
+            nombre: "Carga mas de 5 tm",
+            costo: 84,
+            cobertura: null,
+            restriccion: null,
+            grua: null,
+            gps: null,
+            call_center: "7:00 am a 10:00 pm",
+            validez: 1,
+            cosas: 2312,
+            personas: 3441,
+            exceso: 0,
+            asistencia: null,
+            muerte: 0,
+            invalidez: null,
+            funerarios: 0,
+            medicos: 0,
+            vehicle_type: "Camiones\/Autobus",
+            allow_crane: 0,
+          },
+          44: {
+            nombre: "Carga mas de 2 tm",
+            costo: 84,
+            cobertura: null,
+            restriccion: null,
+            grua: null,
+            gps: null,
+            call_center: "7:00 am a 10:00 pm",
+            validez: 1,
+            cosas: 2192,
+            personas: 3315,
+            exceso: 0,
+            asistencia: null,
+            muerte: 0,
+            invalidez: null,
+            funerarios: 0,
+            medicos: 0,
+            vehicle_type: "Moto\/Automovil\/Camioneta",
+            allow_crane: 0,
+          },
+          87: {
+            nombre: "Lanchas y\/o Yates (Plan de Recreo) Cobertura 15000",
+            costo: 100,
+            cobertura: 15000,
+            restriccion: null,
+            grua: null,
+            gps: null,
+            call_center: null,
+            validez: 1,
+            cosas: 15000,
+            personas: 15000,
+            exceso: 0,
+            asistencia: 0,
+            muerte: 0,
+            invalidez: 0,
+            funerarios: 0,
+            medicos: 0,
+            vehicle_type: "Acu\u00e1tico",
+            allow_crane: 0,
+          },
+          42: {
+            nombre: "Alquiler sin chofer",
+            costo: 102,
+            cobertura: null,
+            restriccion: null,
+            grua: null,
+            gps: null,
+            call_center: "7:00 am a 10:00 pm",
+            validez: 1,
+            cosas: 2252,
+            personas: 3315,
+            exceso: 0,
+            asistencia: null,
+            muerte: 0,
+            invalidez: null,
+            funerarios: 0,
+            medicos: 0,
+            vehicle_type: "Moto\/Automovil\/Camioneta",
+            allow_crane: 0,
+          },
+          47: {
+            nombre: "Carga mas de 8tm",
+            costo: 108,
+            cobertura: null,
+            restriccion: null,
+            grua: null,
+            gps: null,
+            call_center: "7:00 am a 10:00 pm",
+            validez: 1,
+            cosas: 2595,
+            personas: 4378,
+            exceso: 0,
+            asistencia: null,
+            muerte: 0,
+            invalidez: null,
+            funerarios: 0,
+            medicos: 0,
+            vehicle_type: "Camiones\/Autobus",
+            allow_crane: 0,
+          },
+          48: {
+            nombre: "Carga mas de 12 tm",
+            costo: 108,
+            cobertura: null,
+            restriccion: null,
+            grua: null,
+            gps: null,
+            call_center: "7:00 am a 10:00 pm",
+            validez: 1,
+            cosas: 2595,
+            personas: 4378,
+            exceso: 0,
+            asistencia: null,
+            muerte: 0,
+            invalidez: null,
+            funerarios: 0,
+            medicos: 0,
+            vehicle_type: "Camiones\/Autobus",
+            allow_crane: 0,
+          },
+          36: {
+            nombre: "Autobus",
+            costo: 114,
+            cobertura: null,
+            restriccion: null,
+            grua: null,
+            gps: null,
+            call_center: "7:00am a 8:00pm",
+            validez: 1,
+            cosas: 1502,
+            personas: 2817,
+            exceso: 0,
+            asistencia: null,
+            muerte: 0,
+            invalidez: null,
+            funerarios: 0,
+            medicos: 0,
+            vehicle_type: "Camiones\/Autobus",
+            allow_crane: 0,
+          },
+          43: {
+            nombre: "Alquiler con chofer taxi o por puesto",
+            costo: 114,
+            cobertura: null,
+            restriccion: null,
+            grua: null,
+            gps: null,
+            call_center: "7:00 am a 10:00 pm",
+            validez: 1,
+            cosas: 2252,
+            personas: 3315,
+            exceso: 0,
+            asistencia: null,
+            muerte: 0,
+            invalidez: null,
+            funerarios: 0,
+            medicos: 0,
+            vehicle_type: "Moto\/Automovil\/Camioneta",
+            allow_crane: 0,
+          },
+          51: {
+            nombre: "Autobuses suburbanos",
+            costo: 114,
+            cobertura: null,
+            restriccion: null,
+            grua: null,
+            gps: null,
+            call_center: "7:00 am a 10:00 pm",
+            validez: 1,
+            cosas: 1502,
+            personas: 2817,
+            exceso: 0,
+            asistencia: null,
+            muerte: 0,
+            invalidez: null,
+            funerarios: 0,
+            medicos: 0,
+            vehicle_type: "Camiones\/Autobus",
+            allow_crane: 0,
+          },
+          57: {
+            nombre: "Autobuses Urbanos",
+            costo: 114,
+            cobertura: null,
+            restriccion: null,
+            grua: null,
+            gps: null,
+            call_center: null,
+            validez: 1,
+            cosas: 1502,
+            personas: 2817,
+            exceso: 0,
+            asistencia: null,
+            muerte: 0,
+            invalidez: null,
+            funerarios: 0,
+            medicos: 0,
+            vehicle_type: "Camiones\/Autobus",
+            allow_crane: 0,
+          },
+          91: {
+            nombre:
+              "Plan de Botes\/Pe\u00f1eros\/Canoas\/Chalanas Cobertura 15000",
+            costo: 120,
+            cobertura: 15000,
+            restriccion: null,
+            grua: null,
+            gps: null,
+            call_center: null,
+            validez: 1,
+            cosas: 15000,
+            personas: 15000,
+            exceso: 0,
+            asistencia: 0,
+            muerte: 0,
+            invalidez: 0,
+            funerarios: 0,
+            medicos: 0,
+            vehicle_type: "Acu\u00e1tico",
+            allow_crane: 0,
+          },
+          56: {
+            nombre: "Particular hasta 800g con Placa Extranjera",
+            costo: 120,
+            cobertura: null,
+            restriccion: "",
+            grua: "0",
+            gps: null,
+            call_center: null,
+            validez: 1,
+            cosas: 10000,
+            personas: 12523,
+            exceso: 0,
+            asistencia: null,
+            muerte: 0,
+            invalidez: null,
+            funerarios: 0,
+            medicos: 0,
+            vehicle_type: "Todos",
+            allow_crane: 0,
+          },
+          61: {
+            nombre: "Particulares mas de 800g con Placa Extranjera",
+            costo: 142,
+            cobertura: null,
+            restriccion: null,
+            grua: null,
+            gps: null,
+            call_center: "7:00 am a 10:00 pm",
+            validez: 1,
+            cosas: 10000,
+            personas: 12523,
+            exceso: 0,
+            asistencia: null,
+            muerte: 0,
+            invalidez: null,
+            funerarios: 0,
+            medicos: 0,
+            vehicle_type: "Moto\/Automovil\/Camioneta",
+            allow_crane: 0,
+          },
+          62: {
+            nombre: "Casa m\u00f3vil tracci\u00f3n propia con Placa Extranjera",
+            costo: 142,
+            cobertura: null,
+            restriccion: null,
+            grua: null,
+            gps: null,
+            call_center: "7:00 am a 10:00 pm",
+            validez: 1,
+            cosas: 10000,
+            personas: 12523,
+            exceso: 0,
+            asistencia: null,
+            muerte: 0,
+            invalidez: null,
+            funerarios: 0,
+            medicos: 0,
+            vehicle_type: "Cargas",
+            allow_crane: 0,
+          },
+          88: {
+            nombre: "Lanchas y\/o Yates (Plan de Recreo) Cobertura 20000",
+            costo: 150,
+            cobertura: 20000,
+            restriccion: null,
+            grua: null,
+            gps: null,
+            call_center: null,
+            validez: 1,
+            cosas: 20000,
+            personas: 20000,
+            exceso: 0,
+            asistencia: 0,
+            muerte: 0,
+            invalidez: 0,
+            funerarios: 0,
+            medicos: 0,
+            vehicle_type: "Acu\u00e1tico",
+            allow_crane: 0,
+          },
+          63: {
+            nombre: "Auto Escuela con Placa Extranjera",
+            costo: 164,
+            cobertura: null,
+            restriccion: null,
+            grua: null,
+            gps: null,
+            call_center: "7:00 am a 10:00 pm",
+            validez: 1,
+            cosas: 11261,
+            personas: 16577,
+            exceso: 0,
+            asistencia: null,
+            muerte: 0,
+            invalidez: null,
+            funerarios: 0,
+            medicos: 0,
+            vehicle_type: "Moto\/Automovil\/Camioneta",
+            allow_crane: 0,
+          },
+          66: {
+            nombre: "Carga hasta 2 tm con Placa Extranjera",
+            costo: 164,
+            cobertura: null,
+            restriccion: null,
+            grua: null,
+            gps: null,
+            call_center: "7:00 am a 10:00 pm",
+            validez: 1,
+            cosas: 9384,
+            personas: 12523,
+            exceso: 0,
+            asistencia: null,
+            muerte: 0,
+            invalidez: null,
+            funerarios: 0,
+            medicos: 0,
+            vehicle_type: "Moto\/Automovil\/Camioneta",
+            allow_crane: 0,
+          },
+          54: {
+            nombre: "Minibuses interurbanos",
+            costo: 168,
+            cobertura: null,
+            restriccion: null,
+            grua: null,
+            gps: null,
+            call_center: "7:00 am a 10:00 pm",
+            validez: 1,
+            cosas: 2505,
+            personas: 3754,
+            exceso: 0,
+            asistencia: null,
+            muerte: 0,
+            invalidez: null,
+            funerarios: 0,
+            medicos: 0,
+            vehicle_type: "Camiones\/Autobus",
+            allow_crane: 0,
+          },
+          52: {
+            nombre: "Autobuses interurbanos",
+            costo: 258,
+            cobertura: null,
+            restriccion: null,
+            grua: null,
+            gps: null,
+            call_center: "7:00 am a 10:00 pm",
+            validez: 1,
+            cosas: 2000,
+            personas: 3754,
+            exceso: 0,
+            asistencia: null,
+            muerte: 0,
+            invalidez: null,
+            funerarios: 0,
+            medicos: 0,
+            vehicle_type: "Camiones\/Autobus",
+            allow_crane: 0,
+          },
+          76: {
+            nombre: "Minibus Suburbano con Placa Extranjera",
+            costo: 273,
+            cobertura: null,
+            restriccion: null,
+            grua: null,
+            gps: null,
+            call_center: "7:00am a 8:00pm",
+            validez: 1,
+            cosas: 7508,
+            personas: 14084,
+            exceso: 0,
+            asistencia: null,
+            muerte: 0,
+            invalidez: null,
+            funerarios: 0,
+            medicos: 0,
+            vehicle_type: "Camiones\/Autobus",
+            allow_crane: 0,
+          },
+          75: {
+            nombre: "Minibus Urbano con Placa Extranjera",
+            costo: 273,
+            cobertura: null,
+            restriccion: null,
+            grua: null,
+            gps: null,
+            call_center: "7:00am a 8:00pm",
+            validez: 1,
+            cosas: 7508,
+            personas: 14084,
+            exceso: 0,
+            asistencia: null,
+            muerte: 0,
+            invalidez: null,
+            funerarios: 0,
+            medicos: 0,
+            vehicle_type: "Camiones\/Autobus",
+            allow_crane: 0,
+          },
+          69: {
+            nombre: "Carga mas de 5 tm hasta 8 tm con Placa Extranjera",
+            costo: 306,
+            cobertura: null,
+            restriccion: null,
+            grua: null,
+            gps: null,
+            call_center: "7:00 am a 10:00 pm",
+            validez: 1,
+            cosas: 11562,
+            personas: 17207,
+            exceso: 0,
+            asistencia: null,
+            muerte: 0,
+            invalidez: null,
+            funerarios: 0,
+            medicos: 0,
+            vehicle_type: "Moto\/Automovil\/Camioneta",
+            allow_crane: 0,
+          },
+          67: {
+            nombre: "Carga mas de 2 tm hasta 5 tm con Placa Extranjera",
+            costo: 306,
+            cobertura: null,
+            restriccion: null,
+            grua: null,
+            gps: null,
+            call_center: "7:00 am a 10:00 pm",
+            validez: 1,
+            cosas: 10961,
+            personas: 16577,
+            exceso: 0,
+            asistencia: null,
+            muerte: 0,
+            invalidez: null,
+            funerarios: 0,
+            medicos: 0,
+            vehicle_type: "Moto\/Automovil\/Camioneta",
+            allow_crane: 0,
+          },
+          64: {
+            nombre: "Alquiler sin chofer con Placa Extranjera",
+            costo: 371,
+            cobertura: null,
+            restriccion: null,
+            grua: null,
+            gps: null,
+            call_center: "7:00 am a 10:00 pm",
+            validez: 1,
+            cosas: 11261,
+            personas: 16577,
+            exceso: 0,
+            asistencia: null,
+            muerte: 0,
+            invalidez: null,
+            funerarios: 0,
+            medicos: 0,
+            vehicle_type: "Moto\/Automovil\/Camioneta",
+            allow_crane: 0,
+          },
+          71: {
+            nombre: "Carga m\u00e1s de 12 tm con Placa Extranjera",
+            costo: 393,
+            cobertura: null,
+            restriccion: null,
+            grua: null,
+            gps: null,
+            call_center: "7:00 am a 10:00 pm",
+            validez: 1,
+            cosas: 12973,
+            personas: 21892,
+            exceso: 0,
+            asistencia: null,
+            muerte: 0,
+            invalidez: null,
+            funerarios: 0,
+            medicos: 0,
+            vehicle_type: "Moto\/Automovil\/Camioneta",
+            allow_crane: 0,
+          },
+          70: {
+            nombre: "Carga m\u00e1s de 8 tm hasta 12 tm con Placa Extranjera",
+            costo: 393,
+            cobertura: null,
+            restriccion: null,
+            grua: null,
+            gps: null,
+            call_center: "7:00 am a 10:00 pm",
+            validez: 1,
+            cosas: 12973,
+            personas: 21892,
+            exceso: 0,
+            asistencia: null,
+            muerte: 0,
+            invalidez: null,
+            funerarios: 0,
+            medicos: 0,
+            vehicle_type: "Moto\/Automovil\/Camioneta",
+            allow_crane: 0,
+          },
+          65: {
+            nombre:
+              "Alquiler con chofer taxi o por puesto con Placa Extranjera",
+            costo: 415,
+            cobertura: null,
+            restriccion: null,
+            grua: null,
+            gps: null,
+            call_center: "7:00 am a 10:00 pm",
+            validez: 1,
+            cosas: 11261,
+            personas: 16577,
+            exceso: 0,
+            asistencia: null,
+            muerte: 0,
+            invalidez: null,
+            funerarios: 0,
+            medicos: 0,
+            vehicle_type: "Moto\/Automovil\/Camioneta",
+            allow_crane: 0,
+          },
+          73: {
+            nombre: "Autob\u00fas Suburbano con Placa Extranjera",
+            costo: 415,
+            cobertura: null,
+            restriccion: null,
+            grua: null,
+            gps: null,
+            call_center: "7:00am a 8:00pm",
+            validez: 1,
+            cosas: 7508,
+            personas: 14084,
+            exceso: 0,
+            asistencia: null,
+            muerte: 0,
+            invalidez: null,
+            funerarios: 0,
+            medicos: 0,
+            vehicle_type: "Camiones\/Autobus",
+            allow_crane: 0,
+          },
+          72: {
+            nombre: "Autob\u00fas Urbano con Placa Extranjera",
+            costo: 415,
+            cobertura: null,
+            restriccion: null,
+            grua: null,
+            gps: null,
+            call_center: "7:00am a 8:00pm",
+            validez: 1,
+            cosas: 7508,
+            personas: 14084,
+            exceso: 0,
+            asistencia: null,
+            muerte: 0,
+            invalidez: null,
+            funerarios: 0,
+            medicos: 0,
+            vehicle_type: "Camiones\/Autobus",
+            allow_crane: 0,
+          },
+          77: {
+            nombre: "Minibus Interurbano con Placa Extranjera",
+            costo: 611,
+            cobertura: null,
+            restriccion: null,
+            grua: null,
+            gps: null,
+            call_center: "7:00am a 8:00pm",
+            validez: 1,
+            cosas: 12523,
+            personas: 18769,
+            exceso: 0,
+            asistencia: null,
+            muerte: 0,
+            invalidez: null,
+            funerarios: 0,
+            medicos: 0,
+            vehicle_type: "Camiones\/Autobus",
+            allow_crane: 0,
+          },
+          74: {
+            nombre: "Autob\u00fas Interurbano con Placa Extranjera",
+            costo: 939,
+            cobertura: null,
+            restriccion: null,
+            grua: null,
+            gps: null,
+            call_center: "7:00am a 8:00pm",
+            validez: 1,
+            cosas: 10000,
+            personas: 18769,
+            exceso: 0,
+            asistencia: null,
+            muerte: 0,
+            invalidez: null,
+            funerarios: 0,
+            medicos: 0,
+            vehicle_type: "Camiones\/Autobus",
+            allow_crane: 0,
+          },
+        };
+      </script>
+    </div>
+
+    <div class="container">
+      <div class="row align-items-center justify-content-xl-between">
+        <div class="col-xl-6">
+          <div class="copyright text-center text-xl-left text-muted">
+            &copy; 2026
+            <a href="#" class="font-weight-bold ml-1" target="_blank"
+              >Artgoritmo</a
+            >
+          </div>
+        </div>
+      </div>
+    </div>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/css/bootstrap-select.css"
+    />
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script src="https://canal.lavenezolanadeseguros.com/argon/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/js/bootstrap-select.min.js"></script>
+
+    <script src="https://canal.lavenezolanadeseguros.com/argon/js/argon.js?v=2.0.0"></script>
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.0.272/jspdf.debug.js"></script> -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script>
+      function markAsRead(id, element) {
+        fetch("/notifications/read/" + id, {
+          method: "POST",
+          headers: {
+            "X-CSRF-TOKEN": "vrGsXrzQ9EYd9fdMvviPHVWdJl0iQCMN8ju0dlcI",
+          },
+        }).then(() => {
+          if (element) {
+            element.remove();
+          }
+
+          // Actualizar contadores y badges
+          document.querySelectorAll(".notification-badge").forEach((el) => {
+            let count = parseInt(el.innerText) || 0;
+            let newCount = count > 0 ? count - 1 : 0;
+            el.innerText = newCount;
+            if (newCount === 0) {
+              el.style.display = "none";
+            }
+          });
+
+          document
+            .querySelectorAll(".notification-total-count")
+            .forEach((el) => {
+              let count = parseInt(el.innerText) || 0;
+              el.innerText = count > 0 ? count - 1 : 0;
+            });
+        });
+      }
+
+      function markAllAsRead() {
+        if (!confirm("¿Deseas marcar todas las notificaciones como leídas?"))
+          return;
+
+        fetch("/notifications/read-all", {
+          method: "POST",
+          headers: {
+            "X-CSRF-TOKEN": "vrGsXrzQ9EYd9fdMvviPHVWdJl0iQCMN8ju0dlcI",
+          },
+        }).then(() => {
+          location.reload();
+        });
+      }
+    </script>
+  </body>
+</html>
