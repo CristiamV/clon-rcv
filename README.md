@@ -1,9 +1,10 @@
 # Clon estático — La Venezolana de Seguros
 
-Copia estática, sin backend, de dos pantallas del portal de La Venezolana de Seguros:
+Copia estática, sin backend, de pantallas del portal de La Venezolana de Seguros:
 
 - `index.html` — detalle del contrato **#62505** (póliza de automóvil individual, FIAT IDEA, placa RAP86X).
 - `login.html` — pantalla de ingreso.
+- `AB073XT.html` — contrato de prueba **#AB073XT** (rústico, plan 34 «Particulares hasta 800kg», 33 €). Mismos valores que `index.html` salvo los datos del vehículo; marca, modelo, año y serial de motor quedaron en `PENDIENTE` porque no se proveyeron. No tiene PDF propio, así que su botón de descarga está deshabilitado a propósito (apuntarlo al de 62505 bajaría la póliza equivocada).
 
 Se usa para pruebas y se publica en GitHub Pages. Todos los assets (CSS, JS, tipografías de iconos e imágenes) se copiaron localmente, así que el clon **no depende del servidor de producción** para renderizar.
 
